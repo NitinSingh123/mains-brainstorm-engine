@@ -1,0 +1,17 @@
+# Copyrighted source material (coaching PDFs, books) — keep outside git
+sources/
+*.pdf
+
+# Student data is private — never commit
+students/
+
+# Secrets
+.env
+*.key
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+.venv/

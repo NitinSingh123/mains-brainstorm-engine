@@ -1,0 +1,166 @@
+# Question Map — the reference the evaluator scores against.
+# Authored by a human (LLM may draft), reviewed before use.
+# Every fact carries `verified: false` until the founder checks it against a
+# primary source (Bare Act, judgment text, commission report). The evaluator
+# must never present an unverified fact to a student as settled.
+
+id: gs2-fed-001
+paper: GS2
+topic: federalism.centre_state.governor
+source: founder-example        # replace with "pyq-YYYY-Qn" for real PYQs, copied verbatim from the UPSC paper
+marks: 15
+word_limit: 250
+question: >
+  The role of the Governor in Indian federalism has become increasingly
+  contentious. Discuss the constitutional position of the Governor and
+  examine the issues surrounding the office.
+
+decode:
+  directives:
+    - verb: discuss
+      applies_to: constitutional position
+      expects: describe the position with nuance (not just list powers)
+    - verb: examine
+      applies_to: issues surrounding the office
+      expects: probe the issues with evidence, causes and implications
+  central_theme: Governor as a point of friction in Centre-State relations
+  context_cue: "increasingly contentious" -> recent disputes are expected, not only 1980s history
+  demands:
+    - id: D1
+      text: Constitutional position of the Governor
+      explicit: true
+    - id: D2
+      text: Issues surrounding the office
+      explicit: true
+    - id: D3
+      text: Reforms / way forward
+      explicit: false          # implied by "examine issues"; expected in conclusion
+    - id: D4
+      text: Link to federalism (why these issues matter for Centre-State trust)
+      explicit: false          # implied by "in Indian federalism"
+
+# Tiers:
+#   core   — an answer without this is visibly incomplete to an examiner
+#   strong — a good answer usually has it
+#   bonus  — adds value, never compensates for a missing core dimension
+# trigger — the words in the QUESTION that should have activated this
+#           dimension. Hints point at triggers, not at answers. This is the
+#           transferable thinking skill we are teaching.
+
+dimensions:
+  - id: dual_role
+    demand: D1
+    tier: core
+    label: Dual role — constitutional head of the state vs link/agent of the Centre
+    trigger: "constitutional position" + "in Indian federalism"
+    evidence:
+      - { text: "Art 153, 154 — Governor for each state; executive power vested in Governor", verified: false }
+      - { text: "Art 163 — aid and advice of Council of Ministers, except discretion", verified: false }
+      - { text: "Shamsher Singh v State of Punjab (1974) — Governor acts on aid and advice save where discretion is expressly provided", verified: false }
+
+  - id: appointment_tenure
+    demand: D1
+    tier: core
+    label: Appointment by President, holds office during pleasure, no fixed tenure
+    trigger: "constitutional position"
+    evidence:
+      - { text: "Art 155 (appointment), Art 156 (pleasure of the President; 5-year term subject to pleasure)", verified: false }
+      - { text: "B.P. Singhal v Union of India (2010) — removal cannot be arbitrary or merely for political disagreement", verified: false }
+
+  - id: discretionary_powers
+    demand: D1
+    tier: strong
+    label: Discretionary powers — express (Art 163(2), reservation of Bills, special responsibilities) and situational (hung assembly, report under Art 356)
+    trigger: "constitutional position" (discretion is what makes the position contestable)
+    evidence:
+      - { text: "Art 163(2) — Governor's decision on whether a matter is discretionary is final", verified: false }
+      - { text: "Special responsibilities under Art 371 series / Sixth Schedule", verified: false }
+      - { text: "Nabam Rebia (2016) — discretion is narrow; cannot summon/advance assembly session without aid and advice", verified: false }
+
+  - id: assent_to_bills
+    demand: D2
+    tier: core
+    label: Delay / withholding of assent and reservation of State Bills for the President
+    trigger: "increasingly contentious" (the most visible recent dispute)
+    evidence:
+      - { text: "Art 200 (Governor's options on a Bill), Art 201 (Bills reserved for President)", verified: false }
+      - { text: "State of Punjab v Principal Secretary to the Governor (2023) — cannot sit on Bills indefinitely; withholding requires return to legislature", verified: false }
+      - { text: "State of Tamil Nadu v Governor of Tamil Nadu (2025) — timelines laid down; deemed assent to pending Bills", verified: false }
+      - { text: "Presidential Reference under Art 143 (opinion, Nov 2025) — courts cannot fix timelines or deem assent; prolonged unexplained inaction open to limited judicial review. VERIFY exact holding before use.", verified: false }
+      - { text: "Recent examples: Tamil Nadu, Kerala, Punjab, West Bengal", verified: false }
+
+  - id: govt_formation
+    demand: D2
+    tier: core
+    label: Government formation, floor test and dissolution in hung / unstable assemblies
+    trigger: "increasingly contentious" + "role of the Governor"
+    evidence:
+      - { text: "S.R. Bommai (1994) — majority to be tested on the floor of the House", verified: false }
+      - { text: "Rameshwar Prasad (2006) — dissolution of Bihar assembly held unconstitutional", verified: false }
+      - { text: "Subhash Desai (2023, Maharashtra) — Governor's call for floor test held not justified on material before him", verified: false }
+      - { text: "Examples: Goa/Manipur 2017, Karnataka 2018, Maharashtra 2019 & 2022", verified: false }
+
+  - id: art356
+    demand: D2
+    tier: strong
+    label: Report under Art 356 / role in President's Rule
+    trigger: "in Indian federalism"
+    evidence:
+      - { text: "S.R. Bommai (1994) — Proclamation is judicially reviewable", verified: false }
+      - { text: "Sarkaria: Art 356 as last resort", verified: false }
+
+  - id: politicisation
+    demand: D2
+    tier: strong
+    label: Politicisation — partisan appointees, removal on change of Union government, post-retirement rewards
+    trigger: "increasingly contentious"
+    evidence:
+      - { text: "2004 mass removal of Governors -> B.P. Singhal case", verified: false }
+
+  - id: everyday_friction
+    demand: D2
+    tier: bonus
+    label: Everyday friction — Chancellor of state universities, customary address to legislature, public statements
+    trigger: "issues surrounding the office"
+    evidence:
+      - { text: "States (e.g. Kerala, Tamil Nadu, West Bengal, Punjab) moving to remove Governor as Chancellor", verified: false }
+
+  - id: commission_reforms
+    demand: D3
+    tier: core
+    label: Reform recommendations of commissions
+    trigger: "examine the issues" (an examination should end with remedies)
+    evidence:
+      - { text: "Sarkaria (1988) — eminent person, from outside the state, not recently active in politics, CM to be consulted", verified: false }
+      - { text: "Punchhi (2010) — fixed 5-year tenure, removal through resolution of state legislature, time limit for decision on Bills", verified: false }
+      - { text: "NCRWC (2002) — committee to recommend appointments", verified: false }
+
+  - id: conventions_timelines
+    demand: D3
+    tier: strong
+    label: Conventions, codes of conduct, judicially/legislatively defined timelines
+    trigger: "examine the issues"
+
+  - id: federal_trust
+    demand: D4
+    tier: strong
+    label: Why it matters — erosion of cooperative federalism, pattern in opposition-ruled states, Governor should be a bridge not a battleground
+    trigger: "in Indian federalism"
+    evidence:
+      - { text: "Inter-State Council (Art 263) as a forum to settle conventions", verified: false }
+
+# Things that look relevant but are not, for THIS question.
+# The evaluator uses these to label points as tangential/irrelevant.
+anti_patterns:
+  - pattern: Listing all powers (pardon Art 161, ordinance Art 213, executive, legislative, financial) with no link to contention
+    label: tangential
+    why: Topic-true, not question-relevant. Costs words in a 250-word answer.
+  - pattern: Lieutenant Governor of Delhi / UT administrators
+    label: tangential
+    why: Different constitutional office. Relevant only if explicitly used as a comparison.
+  - pattern: President's powers in general
+    label: irrelevant
+
+# Points per answer an exam-realistic brainstorm needs. Above the upper bound,
+# ask the student to prioritise; do not reward volume.
+feasible_point_range: [8, 12]
